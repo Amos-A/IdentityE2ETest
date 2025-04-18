@@ -13,25 +13,26 @@ import java.util.ArrayList;
 
 import static testbase.PageObjectRepo.sellMyCarPage;
 
+//Page where detials for car based in Reg search are displayed.
 public class CarMileagePage extends BasePage {
-
 
     WebElement heading = driver.findElement(By.cssSelector(".MileageInput__component-JKC6 > div"));
     WebElement carRegNumber = driver.findElement(By.cssSelector(".HeroVehicle__component-Av9f > div"));
     WebElement carMakeModel = driver.findElement(By.cssSelector("h1[data-cy='vehicleMakeAndModel']"));
     WebElement carYear = driver.findElement(By.cssSelector("ul[data-cy='vehicleSpecifics'] > li:nth-child(1)"));
 
+    //Constructor for Car Details page
     public CarMileagePage(WebDriver _driver) throws IOException {
         super(_driver);
         driver = _driver;
     }
 
-
+    //Method to validate the header of car details page
     public void validateHeader(){
-        Assert.assertEquals("Car details not found for reg: \n Car Mileage Page is not displayed!", "Your mileage", heading.getText());
+        Assert.assertEquals("\n\nCar details not found!! \n Car Mileage Page is not displayed!\n\n", "Your mileage", heading.getText());
     }
 
-
+    //Method to validate the Car Details found in the output file and one entered from input file
     public void validateCarDetails(int record){
 
         ArrayList<Car> cars = (ArrayList<Car>) StaticObjectRepo.sContext.getContext("listOfCars");

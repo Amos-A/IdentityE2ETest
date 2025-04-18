@@ -8,7 +8,7 @@ Feature: Validate that the car details provided in the file correct
    Given I have an input file to extract the registration numbers
    And I have a car output file to compare results
 
-  @test1
+  @validateCars
   Scenario Outline: Validate the details of cars provided in the file
   Given I navigate to the motorway url
   Then I should land on the SellMyCar Page

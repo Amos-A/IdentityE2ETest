@@ -1,5 +1,7 @@
 package testcases.schemas;
 
+
+//Car class created to hold all the car details from the output file, inorder to compare
 public class Car {
 
     private String registration;

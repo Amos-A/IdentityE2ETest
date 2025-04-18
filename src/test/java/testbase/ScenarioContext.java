@@ -6,14 +6,13 @@ import org.openqa.selenium.WebDriver;
 import java.util.HashMap;
 import java.util.Map;
 
-    public class ScenarioContext { //} extends Scenario {
+    public class ScenarioContext {
 
         private Map<String, Object> scenarioContext;
 
         private WebDriver driver = null;
 
         public ScenarioContext(WebDriver _driver){
-            //super();
             scenarioContext = new HashMap<String, Object>();
             driver = _driver; {
             }

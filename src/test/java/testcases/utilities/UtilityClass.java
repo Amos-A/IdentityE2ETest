@@ -12,6 +12,9 @@ import java.util.regex.Pattern;
 
 public class UtilityClass {
 
+
+    //Method that returns a list of lines from the file provided in the path
+
     public ArrayList<String> readFromTextFile(String path) throws IOException {
         ArrayList<String> lines = new ArrayList<String>();
         BufferedReader bufferedReader = new BufferedReader(new FileReader(path));
@@ -22,6 +25,8 @@ public class UtilityClass {
         return lines;
     }
 
+
+//Pattern matching method that accepts the text to search and the regular exp as string and returns a list if matches found
 
     public ArrayList<String> findPattern(String regExp, String txt) {
         Pattern pattern = Pattern.compile(regExp);
@@ -34,6 +39,7 @@ public class UtilityClass {
         return matches;
     }
 
+//Method that returns a list of registrations found in the input file that match the regular expression
 
     public ArrayList<String> getRegsFromFile() throws IOException {
         String filepath = "src/test/resources/Data/car_input.txt";
@@ -49,6 +55,7 @@ public class UtilityClass {
     }
 
 
+// Method that returns a list of cars found in the output file as array for the object car
 
     public ArrayList<Car> getCarsFromFile() throws IOException {
         String filepath = "src/test/resources/Data/car_output.txt";

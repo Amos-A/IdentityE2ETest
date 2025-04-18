@@ -24,7 +24,7 @@ public class validateCarDetailStepDefination {
     @Given("I have an input file to extract the registration numbers")
     public void iHaveAnInputFileToExtractTheRegistrationNumbers() throws IOException {
         UtilityClass utility = new UtilityClass();
-        ArrayList<String>  listOfRegs = utility.getRegsFromFile();
+        ArrayList<String>  listOfRegs = utility.getRegsFromFile();  //getRegsFromfile method that returns the registrations based on patterns from input file
         StaticObjectRepo.sContext.setContext("listOfRegs", listOfRegs);
         StaticObjectRepo.sContext.setContext("sizeofRegs", listOfRegs.size());
 
@@ -33,13 +33,14 @@ public class validateCarDetailStepDefination {
     @And("I have a car output file to compare results")
     public void iHaveACarOutputFileToCompareResults() throws IOException {
         UtilityClass utility = new UtilityClass();
-        ArrayList<Car> listOfCars = utility.getCarsFromFile();
+        ArrayList<Car> listOfCars = utility.getCarsFromFile(); //getCarsFromfile method that returns the list of cars from output file
         StaticObjectRepo.sContext.setContext("listOfCars", listOfCars);
     }
 
 
     @Given("I navigate to the motorway url")
     public void iNavigateToTheMotorwayUrl() {
+        //Method to navigate to the url from config file
         BasePage basePage = null;
         try {
             basePage = new BasePage(StaticObjectRepo.Driver);
@@ -78,6 +79,8 @@ public class validateCarDetailStepDefination {
         else{
             StaticObjectRepo.sContext.setContext("invalid_ith", true);
             System.out.println("\n\nSCENARIO SKIPPED! \n\n As number provided '"+ ith +" is more than records in input file\n\n");
+            //if input provided in examples in feature file is more than the number of regs found in input file,
+            // eg: 5 then the scenario is skipped instead of failing
         }
     }
 

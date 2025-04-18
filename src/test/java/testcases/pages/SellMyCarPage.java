@@ -10,6 +10,8 @@ import java.io.IOException;
 
 import static testbase.PageObjectRepo.carMileagePage;
 
+
+//Home page where Reg detail can be entered
 public class SellMyCarPage extends BasePage {
 
 
@@ -22,6 +24,7 @@ public class SellMyCarPage extends BasePage {
         driver = _driver;
     }
 
+    //Method to search car details using the values from input sheet
     public void searchCarDetails(String regNo) throws IOException {
             EnterText(regNumberInput, regNo);
             ClickOnElement(valueButton);
