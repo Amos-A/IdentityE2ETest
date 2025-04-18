@@ -26,6 +26,8 @@ public class validateCarDetailStepDefination {
         UtilityClass utility = new UtilityClass();
         ArrayList<String>  listOfRegs = utility.getRegsFromFile();
         StaticObjectRepo.sContext.setContext("listOfRegs", listOfRegs);
+        StaticObjectRepo.sContext.setContext("sizeofRegs", listOfRegs.size());
+
     }
 
     @And("I have a car output file to compare results")
@@ -59,19 +61,31 @@ public class validateCarDetailStepDefination {
 
     @Then("I should see the CarMileage page")
     public void iShouldSeeTheCarMileagePage() {
-        carMileagePage.validateHeader();
+        if(!(Boolean)StaticObjectRepo.sContext.getContext("invalid_ith")) {
+            carMileagePage.validateHeader();
+        }
     }
 
 
     @When("I enter the {string} registration number from list and click value my car button")
     public void iEnterTheRegistrationNumberFromListAndClickValueMyCarButton(String ith) throws IOException {
         Object listOfRegs = (StaticObjectRepo.sContext.getContext("listOfRegs"));
-        sellMyCarPage.searchCarDetails(((ArrayList<String>) listOfRegs).get(Integer.parseInt(ith)-1));
+
+        if((Integer) (StaticObjectRepo.sContext.getContext("sizeofRegs")) >= Integer.parseInt(ith)) {
+            sellMyCarPage.searchCarDetails(((ArrayList<String>) listOfRegs).get(Integer.parseInt(ith) - 1));
+            StaticObjectRepo.sContext.setContext("invalid_ith", false);
+        }
+        else{
+            StaticObjectRepo.sContext.setContext("invalid_ith", true);
+            System.out.println("\n\nSCENARIO SKIPPED! \n\n As number provided '"+ ith +" is more than records in input file\n\n");
+        }
     }
 
 
     @And("the details of the car should match the expected from {string} registration in test file")
     public void theDetailsOfTheCarShouldMatchTheExpectedFromRegistrationInTestFile(String ith) {
-        carMileagePage.validateCarDetails(Integer.parseInt(ith));
+        if(!(Boolean)StaticObjectRepo.sContext.getContext("invalid_ith")) {
+            carMileagePage.validateCarDetails(Integer.parseInt(ith));
+        }
     }
 }

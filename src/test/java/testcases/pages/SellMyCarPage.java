@@ -12,22 +12,24 @@ import static testbase.PageObjectRepo.carMileagePage;
 
 public class SellMyCarPage extends BasePage {
 
-    public SellMyCarPage(WebDriver _driver) throws IOException {
-        super(_driver);
-        driver = _driver;
-    }
 
     WebElement pageHeading = driver.findElement(By.cssSelector("h1"));
     WebElement valueButton = driver.findElement(By.cssSelector("button[type='submit']"));
     WebElement regNumberInput = driver.findElement(By.id("vrm-input"));
 
-    public void searchCarDetails(String regNo) throws IOException {
-        EnterText(regNumberInput, regNo);
-        ClickOnElement(valueButton);
-        carMileagePage = new CarMileagePage(driver);
+    public SellMyCarPage(WebDriver _driver) throws IOException {
+        super(_driver);
+        driver = _driver;
     }
 
+    public void searchCarDetails(String regNo) throws IOException {
+            EnterText(regNumberInput, regNo);
+            ClickOnElement(valueButton);
+            carMileagePage = new CarMileagePage(driver);
+    }
+
+
     public void validateHeader() {
-        Assert.assertTrue("The header of the page does not match!", pageHeading.getText().startsWith("Sell my car."));
+        Assert.assertTrue("The header of Sell my car page does not match!", pageHeading.getText().startsWith("Sell my car."));
     }
 }

@@ -15,19 +15,22 @@ import static testbase.PageObjectRepo.sellMyCarPage;
 
 public class CarMileagePage extends BasePage {
 
-    public CarMileagePage(WebDriver _driver) throws IOException {
-        super(_driver);
-        driver = _driver;
-    }
 
     WebElement heading = driver.findElement(By.cssSelector(".MileageInput__component-JKC6 > div"));
     WebElement carRegNumber = driver.findElement(By.cssSelector(".HeroVehicle__component-Av9f > div"));
     WebElement carMakeModel = driver.findElement(By.cssSelector("h1[data-cy='vehicleMakeAndModel']"));
     WebElement carYear = driver.findElement(By.cssSelector("ul[data-cy='vehicleSpecifics'] > li:nth-child(1)"));
 
-    public void validateHeader(){
-        Assert.assertEquals("Car Mileage Page is not displayed!", "Your mileage", heading.getText());
+    public CarMileagePage(WebDriver _driver) throws IOException {
+        super(_driver);
+        driver = _driver;
     }
+
+
+    public void validateHeader(){
+        Assert.assertEquals("Car details not found for reg: \n Car Mileage Page is not displayed!", "Your mileage", heading.getText());
+    }
+
 
     public void validateCarDetails(int record){
 

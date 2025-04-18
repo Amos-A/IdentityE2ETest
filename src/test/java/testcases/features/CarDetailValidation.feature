@@ -22,3 +22,5 @@ Feature: Validate that the car details provided in the file correct
     |2|
     |3|
     |4|
+    |5|
+
